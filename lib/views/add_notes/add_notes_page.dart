@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notegetxmysql/data/src/colors.dart';
+import 'package:notegetxmysql/data/src/strings.dart';
 import 'package:notegetxmysql/views/add_notes/add_notes_controller.dart';
 
 
@@ -11,5 +13,6 @@ class AddNotesPage extends GetWidget<AddNotesController> {
   @override
   Widget build(BuildContext context) {
     return Container();
+
   }
 }

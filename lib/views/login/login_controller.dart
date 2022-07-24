@@ -23,17 +23,20 @@ class LoginController extends GetxController {
   void callingLoginService(String username, String password) {
     final LoginRequestModel requestModel = LoginRequestModel(username: username, password: password);
 
-    isLoading.call(true);
-    _loginService.login(requestModel).then((user) {
-      print('then fonksiyonu içindeyiz');
-      print(user);
-      isLogin.call(true);
-    }).catchError((dynamic error) {
-      print('hata fonksiyonu içindeyiz');
-      // print(error);
-      this.error.trigger(error);
-    }).whenComplete(() {
-      isLoading.call(false);
-    });
+//    isLoading.call(true);
+//    _loginService.login(requestModel).then((user) {
+//      print('then fonksiyonu içindeyiz');
+//      print(user);
+//      isLogin.call(true);
+//    }).catchError((dynamic error) {
+//      print('hata fonksiyonu içindeyiz');
+//      // print(error);
+//      this.error.trigger(error);
+//    }).whenComplete(() {
+//      isLoading.call(false);
+//    }
+//    );
+
+
   }
 }
