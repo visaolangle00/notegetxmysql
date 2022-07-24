@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:notegetxmysql/data/src/colors.dart';
 import 'package:notegetxmysql/data/src/images.dart';
 import 'package:notegetxmysql/data/src/strings.dart';
@@ -65,7 +64,7 @@ class LoginPage extends GetWidget<LoginController> {
         padding: const EdgeInsets.fromLTRB(40, 2, 8, 2),
         child: TextField(
           textInputAction: TextInputAction.next,
-          obscureText: true,
+          //obscureText: true,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: usernameText,
