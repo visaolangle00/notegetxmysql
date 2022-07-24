@@ -13,11 +13,10 @@ class RegisterPage extends GetWidget<RegisterController> {
   @override
   Widget build(BuildContext context) {
     controller.isRegister.listen((isRegister) {
-        if(isRegister) _goToLogin();
+      if (isRegister) _goToLogin();
     });
 
     controller.error.listen((error) => _errorDialog());
-
 
     return Scaffold(
         appBar: AppBar(
@@ -69,11 +68,8 @@ class RegisterPage extends GetWidget<RegisterController> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: usernameText,
-
           ),
           controller: controller.usernameController,
-          // ignore: avoid_print
-
         ),
       ),
     );
@@ -173,12 +169,19 @@ class RegisterPage extends GetWidget<RegisterController> {
   }
 
   void _onTap() {
-    controller.callingRegisterService(
-      controller.usernameController.text,
-      controller.emailController.text,
-      controller.bookController.text,
-      controller.passwordController.text,
-    );
+    if (controller.usernameController.text.isNotEmpty &&
+        controller.emailController.text.isNotEmpty &&
+        controller.bookController.text.isNotEmpty &&
+        controller.passwordController.text.isNotEmpty) {
+      controller.callingRegisterService(
+        controller.usernameController.text,
+        controller.emailController.text,
+        controller.bookController.text,
+        controller.passwordController.text,
+      );
+    } else {
+      _emptyDialog();
+    }
   }
 
   Widget _buildSpace() {
@@ -187,7 +190,7 @@ class RegisterPage extends GetWidget<RegisterController> {
     );
   }
 
-  void _goToLogin(){
+  void _goToLogin() {
     Get.toNamed(LoginPage.routeName);
   }
 
@@ -200,6 +203,14 @@ class RegisterPage extends GetWidget<RegisterController> {
     );
   }
 
+  void _emptyDialog() {
+    Get.snackbar(
+      errorTitle,
+      emptyText,
+      colorText: white,
+      backgroundColor: red,
+    );
+  }
 }
 
 

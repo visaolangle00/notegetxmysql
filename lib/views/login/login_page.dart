@@ -11,13 +11,13 @@ import 'package:notegetxmysql/views/register/register_page.dart';
 
 class LoginPage extends GetWidget<LoginController> {
   static const String routeName = '/views/login/login_page';
+
   @override
   Widget build(BuildContext context) {
     controller.error.listen((error) => _errorDialog);
     controller.isLogin.listen((isLogin) {
       if (isLogin) _goToHomePage();
     });
-
     controller.errorTexts.listen((errorTexts) {
       if (errorTexts != null) _errorTextsDialog(errorTexts);
     });
@@ -114,15 +114,13 @@ class LoginPage extends GetWidget<LoginController> {
       height: size,
       child: ElevatedButton(
           onPressed: () {
-//            controller.callingLoginService(
-//              controller.usernameController.text,
-//              controller.passwordControler.text,
-//            );
-
-       //      _goToHomePage();
-            if(controller.usernameController.text.isNotEmpty&& controller.passwordControler.text.isNotEmpty){
-              controller.callingLoginService(controller.usernameController.text, controller.passwordControler.text,);
-            }else{
+            if (controller.usernameController.text.isNotEmpty &&
+                controller.passwordControler.text.isNotEmpty) {
+              controller.callingLoginService(
+                controller.usernameController.text,
+                controller.passwordControler.text,
+              );
+            } else {
               _emptyDialog();
             }
           },
@@ -158,13 +156,12 @@ class LoginPage extends GetWidget<LoginController> {
               style: TextStyle(color: black, fontStyle: FontStyle.italic),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.offNamed(RegisterPage.routeName);
+                  Get.toNamed(RegisterPage.routeName);
                 }),
         ]));
   }
 
   void _goToHomePage() {
-    //Get.toNamed(HomePage.routeName);
     Get.offAndToNamed(HomePage.routeName);
   }
 
@@ -194,5 +191,4 @@ class LoginPage extends GetWidget<LoginController> {
       backgroundColor: red,
     );
   }
-
 }
