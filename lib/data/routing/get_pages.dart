@@ -7,6 +7,7 @@ import 'package:notegetxmysql/views/login/login_page.dart';
 import 'package:notegetxmysql/views/profile/profile_page.dart';
 import 'package:notegetxmysql/views/register/register_page.dart';
 import 'package:get/get.dart';
+import 'package:notegetxmysql/views/search/search_page.dart';
 
 List<GetPage> getPages = [
   GetPage(name: LoginPage.routeName, page: () => LoginPage()),
@@ -16,4 +17,5 @@ List<GetPage> getPages = [
 
   GetPage(name: InfoPage.routeName, page: () => InfoPage()),
   GetPage(name: ProfilePage.routeName, page: () => ProfilePage()),
+  GetPage(name: SearchPage.routeName, page: () => SearchPage()),
 ];

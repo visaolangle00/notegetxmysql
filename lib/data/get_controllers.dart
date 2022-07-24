@@ -11,6 +11,7 @@ import 'package:notegetxmysql/views/info/info_controller.dart';
 import 'package:notegetxmysql/views/login/login_controller.dart';
 import 'package:notegetxmysql/views/profile/profile_controller.dart';
 import 'package:notegetxmysql/views/register/register_controller.dart';
+import 'package:notegetxmysql/views/search/search_controller.dart';
 
 
 Future getControllers() async {
@@ -24,6 +25,7 @@ Future getControllers() async {
   Get.create(() => AddNotesController(Get.find()), permanent: false);
   Get.create(() => InfoController(), permanent: false);
   Get.create(() => ProfileController(), permanent: false);
+  Get.create(() => SearchController(Get.find()), permanent: false);
 
 
   // Services

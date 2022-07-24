@@ -42,3 +42,6 @@ const String infoAppBarText = 'Hakkımızda';
 //Profile Page
 const String profileAppBarText = 'Profil';
 
+//Search
+const String searchAppBarText = 'Arama';
+
