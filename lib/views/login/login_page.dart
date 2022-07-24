@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:notegetxmysql/data/src/colors.dart';
 import 'package:notegetxmysql/data/src/images.dart';
 import 'package:notegetxmysql/data/src/strings.dart';
+import 'package:notegetxmysql/views/home/home_page.dart';
 
 import 'package:notegetxmysql/views/login/login_controller.dart';
 import 'package:notegetxmysql/views/register/register_page.dart';
@@ -12,6 +13,11 @@ class LoginPage extends GetWidget<LoginController> {
   static const String routeName = '/views/login/login_page';
   @override
   Widget build(BuildContext context) {
+    controller.error.listen((error) => _errorDialog);
+    controller.isLogin.listen((isLogin) {
+      if (isLogin) _goToHomePage();
+    });
+
     return Scaffold(
         appBar: AppBar(
           title: Text(loginAppBarText),
@@ -64,7 +70,6 @@ class LoginPage extends GetWidget<LoginController> {
         padding: const EdgeInsets.fromLTRB(40, 2, 8, 2),
         child: TextField(
           textInputAction: TextInputAction.next,
-          //obscureText: true,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: usernameText,
@@ -104,7 +109,12 @@ class LoginPage extends GetWidget<LoginController> {
     return SizedBox(
       height: size,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.callingLoginService(
+              controller.usernameController.text,
+              controller.passwordControler.text,
+            );
+          },
           child: Text(loginButton),
           style: ElevatedButton.styleFrom(
             primary: mainColor,
@@ -140,5 +150,18 @@ class LoginPage extends GetWidget<LoginController> {
                   Get.offNamed(RegisterPage.routeName);
                 }),
         ]));
+  }
+
+  void _goToHomePage() {
+    Get.toNamed(HomePage.routeName);
+  }
+
+  void _errorDialog() {
+    Get.snackbar(
+      errorTitle,
+      errorDescription,
+      colorText: white,
+      backgroundColor: red,
+    );
   }
 }
