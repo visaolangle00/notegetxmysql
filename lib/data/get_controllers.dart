@@ -2,6 +2,7 @@
 import 'package:get/get.dart';
 import 'package:notegetxmysql/data/services/add_notes/add_notes_service.dart';
 import 'package:notegetxmysql/data/services/dio_manager.dart';
+import 'package:notegetxmysql/data/services/home/home_service.dart';
 import 'package:notegetxmysql/data/services/login/login_service.dart';
 import 'package:notegetxmysql/data/services/register/register_service.dart';
 import 'package:notegetxmysql/views/add_notes/add_notes_controller.dart';
@@ -17,8 +18,8 @@ Future getControllers() async {
 
   Get.create(() => LoginController(Get.find()), permanent: false);
   Get.create(() => RegisterController(Get.find()), permanent: false);
-  Get.create(() => HomeController(), permanent: false);
-  Get.create(() => HomeController(), permanent: false);
+  //Get.create(() => HomeController(), permanent: false);
+  Get.create(() => HomeController(Get.find()), permanent: false);
 
   Get.create(() => AddNotesController(Get.find()), permanent: false);
   Get.create(() => InfoController(), permanent: false);
@@ -28,9 +29,10 @@ Future getControllers() async {
   // Services
   Get.lazyPut(() => DioManager(), fenix:  true);
 
-  Get.lazyPut<RegisterService>(() => RegisterServiceImp(Get.find()));
-  Get.lazyPut<LoginService>(() => LoginServiceImp(Get.find()));
-  Get.lazyPut<AddNotesService>(() => AddNotesServiceImp(Get.find()));
+  Get.lazyPut<RegisterService>(() => RegisterServiceImp());
+  Get.lazyPut<LoginService>(() => LoginServiceImp());
+  Get.lazyPut<AddNotesService>(() => AddNotesServiceImp());
+  Get.lazyPut<HomeService>(() => HomeServiceImp());
 
 
 }

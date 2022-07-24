@@ -11,20 +11,10 @@ abstract class RegisterService {
 }
 
 class RegisterServiceImp extends RegisterService {
-  final Dio _dio;
-
-  RegisterServiceImp(DioManager _dioManager) : _dio = _dioManager.dio;
-
   @override
   Future register(RegisterRequestModel registerRequestModel) async {
-    // return await _dio
-    //     .post(
-    //       "notebook/register.php",
-    //       data: registerRequestModel.toJson(),
-    //     )
-    //     .then((response) => registerResponseModelFromJson(response.data));
-
     const String _baseUrl = 'http://192.168.1.4/flutter/flutter_notegetx_mini/register.php';
+
     var _url = Uri.parse(_baseUrl);
 
     final response = await http.post(_url, body: registerRequestModel.toJson());
