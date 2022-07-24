@@ -9,7 +9,7 @@ import 'package:notegetxmysql/data/services/search/search_service.dart';
 import 'model/search_request_model.dart';
 
 class SearchController extends GetxController {
-  final SearchService noteSearchRepository;
+  final SearchService noteSearchService;
 
   final TextEditingController namesTextController = TextEditingController();
 
@@ -24,13 +24,10 @@ class SearchController extends GetxController {
   final RxInt selectedIndex = _defaultNoIndex.obs;
   String parsedSearchedString = '';
 
-  final RxList<dynamic> noteFundList = RxList([]);
-  final RxList<dynamic> noteStockList = RxList([]);
-
   final Debouncer _searchDebouncer = Debouncer(delay: _delayDuration);
 
   SearchController(
-      this.noteSearchRepository,
+      this.noteSearchService,
       );
 
   void search(String noteName) {
@@ -49,13 +46,13 @@ class SearchController extends GetxController {
       debugPrint('Already getting names');
     } else {
       isLoading.call(true);
-      noteSearchRepository //
+      noteSearchService //
           .search(searchRequestModel)
           .then((instrumentSearchResponseModel) {
         noteNameList.value = instrumentSearchResponseModel;
       }).catchError((dynamic error) {
         this.error.trigger(error);
-        print(error);
+        isNoResultFound.call(true);
       }).whenComplete(() {
         if (noteNameList.isNotEmpty) {
           lastSearchNames = Uri.decodeFull(typedNames);
@@ -75,7 +72,6 @@ class SearchController extends GetxController {
 
   void onNamesSelected(int id) {
     selectedIndex.call(id);
-
 
     _loadNames(parsedSearchedString);
 
