@@ -18,6 +18,7 @@ Future getControllers() async {
   Get.create(() => LoginController(Get.find()), permanent: false);
   Get.create(() => RegisterController(Get.find()), permanent: false);
   Get.create(() => HomeController(), permanent: false);
+  Get.create(() => HomeController(), permanent: false);
 
   Get.create(() => AddNotesController(Get.find()), permanent: false);
   Get.create(() => InfoController(), permanent: false);
