@@ -15,3 +15,7 @@ const String bookText = 'Favori Kitap';
 const String passwordVerifyText = 'Parola Tekrar';
 const String registerText = 'Kayıt ol';
 
+//General
+const String errorTitle = 'Hata';
+const String errorDescription = 'Tekrar deneyiniz';
+

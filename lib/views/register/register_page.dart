@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:notegetxmysql/data/src/colors.dart';
 import 'package:notegetxmysql/data/src/strings.dart';
+import 'package:notegetxmysql/views/login/login_page.dart';
 import 'package:notegetxmysql/views/register/register_controller.dart';
 
 class RegisterPage extends GetWidget<RegisterController> {
@@ -10,6 +12,13 @@ class RegisterPage extends GetWidget<RegisterController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.isRegister.listen((isRegister) {
+        if(isRegister) _goToLogin();
+    });
+
+    controller.error.listen((error) => _errorDialog());
+
+
     return Scaffold(
         appBar: AppBar(
           title: Text(registerAppBarText),
@@ -60,8 +69,11 @@ class RegisterPage extends GetWidget<RegisterController> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: usernameText,
+
           ),
           controller: controller.usernameController,
+          // ignore: avoid_print
+
         ),
       ),
     );
@@ -152,11 +164,20 @@ class RegisterPage extends GetWidget<RegisterController> {
     return SizedBox(
       height: size,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => _onTap(),
           child: Text(registerText),
           style: ElevatedButton.styleFrom(
             primary: mainColor,
           )),
+    );
+  }
+
+  void _onTap() {
+    controller.callingRegisterService(
+      controller.usernameController.text,
+      controller.emailController.text,
+      controller.bookController.text,
+      controller.passwordController.text,
     );
   }
 
@@ -165,6 +186,20 @@ class RegisterPage extends GetWidget<RegisterController> {
       height: 30,
     );
   }
+
+  void _goToLogin(){
+    Get.toNamed(LoginPage.routeName);
+  }
+
+  void _errorDialog() {
+    Get.snackbar(
+      errorTitle,
+      errorDescription,
+      colorText: white,
+      backgroundColor: red,
+    );
+  }
+
 }
 
 
