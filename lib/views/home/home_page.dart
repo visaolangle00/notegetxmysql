@@ -6,7 +6,9 @@ import 'package:notegetxmysql/data/src/strings.dart';
 import 'package:notegetxmysql/views/add_notes/add_notes_page.dart';
 
 import 'package:notegetxmysql/views/home/home_controller.dart';
+import 'package:notegetxmysql/views/info/info_page.dart';
 import 'package:notegetxmysql/views/login/login_page.dart';
+import 'package:notegetxmysql/views/profile/profile_page.dart';
 
 class HomePage extends GetWidget<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -99,11 +101,12 @@ class HomePage extends GetWidget<HomeController> {
   }
 
   void _goToProfile() {
-    Get.back();
+    //Get.back();
+    Get.toNamed(ProfilePage.routeName);
   }
 
   void _goToInfo() {
-    Get.back();
+    Get.toNamed(InfoPage.routeName);
   }
 
   void _goToLogout() {
