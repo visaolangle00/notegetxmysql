@@ -5,6 +5,7 @@ import 'package:notegetxmysql/data/services/dio_manager.dart';
 import 'package:notegetxmysql/data/services/home/home_service.dart';
 import 'package:notegetxmysql/data/services/login/login_service.dart';
 import 'package:notegetxmysql/data/services/register/register_service.dart';
+import 'package:notegetxmysql/data/services/search/search_service.dart';
 import 'package:notegetxmysql/views/add_notes/add_notes_controller.dart';
 import 'package:notegetxmysql/views/home/home_controller.dart';
 import 'package:notegetxmysql/views/info/info_controller.dart';
@@ -35,6 +36,7 @@ Future getControllers() async {
   Get.lazyPut<LoginService>(() => LoginServiceImp());
   Get.lazyPut<AddNotesService>(() => AddNotesServiceImp());
   Get.lazyPut<HomeService>(() => HomeServiceImp());
+  Get.lazyPut<SearchService>(() => SearchServiceImp());
 
 
 }

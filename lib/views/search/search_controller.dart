@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:notegetxmysql/data/services/home/home_service.dart';
+import 'package:notegetxmysql/data/services/search/search_service.dart';
+
+import 'model/search_request_model.dart';
 
 class SearchController extends GetxController {
-  final HomeService noteSearchRepository;
+  final SearchService noteSearchRepository;
 
   final TextEditingController namesTextController = TextEditingController();
 
@@ -40,17 +43,20 @@ class SearchController extends GetxController {
   }
 
   void _loadNames(String typedNames, {String container = '', bool isFromTappedNames = true}) {
+    SearchRequestModel searchRequestModel = SearchRequestModel(title: typedNames);
+
     if (isLoading.value && isFromTappedNames) {
       debugPrint('Already getting names');
     } else {
       isLoading.call(true);
       noteSearchRepository //
-          .getNotesTitle()
+          .search(searchRequestModel)
           .then((instrumentSearchResponseModel) {
         noteNameList.value = instrumentSearchResponseModel;
-      })
-          .catchError((dynamic error) => this.error.trigger(error))
-          .whenComplete(() {
+      }).catchError((dynamic error) {
+        this.error.trigger(error);
+        print(error);
+      }).whenComplete(() {
         if (noteNameList.isNotEmpty) {
           lastSearchNames = Uri.decodeFull(typedNames);
           isNoResultFound.call(false);
