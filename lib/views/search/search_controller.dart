@@ -48,8 +48,8 @@ class SearchController extends GetxController {
       isLoading.call(true);
       noteSearchService //
           .search(searchRequestModel)
-          .then((instrumentSearchResponseModel) {
-        noteNameList.value = instrumentSearchResponseModel;
+          .then((noteSearchResponseModel) {
+        noteNameList.value = noteSearchResponseModel;
       }).catchError((dynamic error) {
         this.error.trigger(error);
         isNoResultFound.call(true);

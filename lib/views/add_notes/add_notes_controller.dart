@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:notegetxmysql/data/services/add_notes/add_notes_service.dart';
 import 'package:notegetxmysql/data/services/add_notes/model/add_notes_request_model.dart';
 import 'package:notegetxmysql/data/services/add_notes/model/add_notes_response_model.dart';
+import 'package:notegetxmysql/views/common/common_values.dart';
 
 class AddNotesController extends GetxController {
   final TextEditingController titleController = TextEditingController();
@@ -25,6 +26,7 @@ class AddNotesController extends GetxController {
       title: title,
       description: description,
       isRemove: '0',
+      userId: userId.value,
     );
 
     isLoading.call(true);
@@ -34,6 +36,7 @@ class AddNotesController extends GetxController {
       },
     ).catchError((dynamic error) {
       this.error.trigger(error);
+      print(error);
     }).whenComplete(
           () {
         isLoading.call(false);
