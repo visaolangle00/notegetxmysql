@@ -12,7 +12,21 @@ class AddNotesPage extends GetWidget<AddNotesController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(addNoteAppBarText),
+        backgroundColor: mainColor,
+      ),
+      body: _buildBody());
 
+  }
+  Widget _buildBody() {
+    return Card(
+      child: _buildTextField(),
+    );
+  }
+
+  Widget _buildTextField() {
+    return TextField();
   }
 }

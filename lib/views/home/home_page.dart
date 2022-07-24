@@ -27,8 +27,8 @@ class HomePage extends GetWidget<HomeController> {
 
   Widget _buildFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: () => _goToBack(),
-      //onPressed: () => _goToAddNotePage(),
+      //onPressed: () => _goToBack(),
+      onPressed: () => _goToAddNotePage(),
       child: Icon(Icons.add),
       backgroundColor: mainColor,
     );
@@ -110,7 +110,7 @@ class HomePage extends GetWidget<HomeController> {
     Get.offAndToNamed(LoginPage.routeName);
   }
 
-//  void _goToAddNotePage() {
-//    Get.toNamed(AddNotesPage.routeName);
-//  }
+  void _goToAddNotePage() {
+    Get.toNamed(AddNotesPage.routeName);
+  }
 }
