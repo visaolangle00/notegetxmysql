@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:notegetxmysql/data/services/login/login_service.dart';
 import 'package:notegetxmysql/data/services/login/model/login_request_model.dart';
 import 'package:notegetxmysql/data/services/login/model/login_response_model.dart';
+import 'package:notegetxmysql/data/src/strings.dart';
 
 class LoginController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
@@ -13,6 +14,7 @@ class LoginController extends GetxController {
   final Rx<bool> isLoading = RxBool(false);
   final Rxn<dynamic> error = Rxn<dynamic>();
   final RxBool isLogin = RxBool(false);
+  final RxnString errorTexts = RxnString();
 
   final Rxn<LoginResponseModel> user = Rxn();
 
@@ -36,6 +38,17 @@ class LoginController extends GetxController {
 //      isLoading.call(false);
 //    }
 //    );
+
+    isLoading.call(true);
+    _loginService.login(requestModel).then((user) {
+      if (user.statu == 2) isLogin.call(true);
+      if (user.statu == 1) errorTexts.value = wrongPasswordText;
+      if (user.statu == 0) errorTexts.value = noUserText;
+    }).catchError((dynamic error) {
+      this.error.trigger(error);
+    }).whenComplete(() {
+      isLoading.call(false);
+    });
 
 
   }
