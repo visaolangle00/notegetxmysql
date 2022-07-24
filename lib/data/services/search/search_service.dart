@@ -4,6 +4,9 @@ import 'package:notegetxmysql/views/search/model/search_request_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:notegetxmysql/views/search/model/search_response_model.dart';
 
+import '../../../views/search/model/search_request_model.dart';
+import '../../../views/search/model/search_response_model.dart';
+
 abstract class SearchService {
   Future search(SearchRequestModel searchRequestModel);
 }
@@ -16,12 +19,6 @@ class SearchServiceImp extends SearchService {
     var _url = Uri.parse(_baseUrl);
 
     final response = await http.post(_url, body: searchRequestModel.toJson());
-
-    // if (response.statusCode == 200) {
-    //   return SearchResponseModelFromJson(response.body);
-    // } else {
-    //   return '';
-    // }
 
     var noteListTitle = [];
 

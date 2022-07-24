@@ -161,14 +161,11 @@ class SearchPage extends GetWidget<SearchController> {
       onFieldSubmitted: (String typedName) {
         // _nameFocusNode.unfocus();
 
-        if (typedName.length <= _availableSearchLetterValue) {
-          controller.search(typedName);
-        }
+        controller.search(typedName);
       },
       onChanged: (String typedName) {
-        if (typedName.length > _availableSearchLetterValue) {
-          controller.search(typedName);
-        }
+        controller.search(typedName);
+
         controller.onNamesChanged(typedName);
       },
     );
@@ -229,4 +226,3 @@ class SearchPage extends GetWidget<SearchController> {
 }
 
 const int _animationDuration = 400;
-const int _availableSearchLetterValue = 2;
