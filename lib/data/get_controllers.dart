@@ -27,7 +27,7 @@ Future getControllers() async {
 
 
   // Services
-  Get.lazyPut(() => DioManager(), fenix:  true);
+  //Get.lazyPut(() => DioManager(), fenix:  true);
 
   Get.lazyPut<RegisterService>(() => RegisterServiceImp());
   Get.lazyPut<LoginService>(() => LoginServiceImp());
